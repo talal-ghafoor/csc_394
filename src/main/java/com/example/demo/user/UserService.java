@@ -1,16 +1,12 @@
 package com.example.demo.user;
 
-
 import java.util.List;
 
 public interface UserService {
-    User saveUser(User user);
+    void save(User user);
 
-    List<User> findAll();
+    User findByUsername(String username);
 
-    // update operation
-    User updateUser(User user, Long userid);
+    Object findAll();
 
-    // delete operation
-    void deleteUserById(Long userid);
 }

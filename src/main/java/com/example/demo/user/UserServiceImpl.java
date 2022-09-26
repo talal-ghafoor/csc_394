@@ -1,46 +1,34 @@
-// Below is the code for the UserServiceImpl.java file.
 package com.example.demo.user;
 
+import com.example.demo.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private RoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    // save operation
     @Override
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public void save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles(new HashSet<>(roleRepository.findAll()));
+        userRepository.save(user);
     }
 
-    // read operation
     @Override
-    public List<User> findAll() {
-        return (List<User>) userRepository.findAll();
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
-    // update operation
     @Override
-    public User updateUser(User user, Long userId) {
-        User userDB = userRepository.findById(userId).get();
-
-        if (Objects.nonNull(user.getUsername()) && !"".equalsIgnoreCase(user.getUsername())) {
-            userDB.setUsername(user.getUsername());
-        }
-
-        return userRepository.save(userDB);
-    }
-
-    // delete operation
-    @Override
-    public void deleteUserById(Long userId) {
-        userRepository.deleteById(userId);
-    }
-
+    public Object findAll() { return userRepository.findAll(); }
 }

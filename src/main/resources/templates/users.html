@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table class="table table-striped">
+  <tr>
+    <th>Username</th>
+    <th>Role ID</th>
+  </tr>
+  <tr th:each="user : ${users}">
+    <td th:text="${user.id}"></td>
+    <td th:text="${user.username}"></td>
+    <td th:text="${user.password}"></td>
+  </tr>
+  <a href="/welcome">Go back</a>
+</table>
+</body>
+</html>
