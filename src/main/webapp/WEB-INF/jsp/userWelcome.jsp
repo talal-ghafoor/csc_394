@@ -12,14 +12,12 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" href="admin">Home</a>
-      <a class="nav-item nav-link" href="admin-dashboard">Dashboard</a>
+      <a class="nav-item nav-link active" href="userWelcome">Home</a>
     </div>
   </div>
 </nav>
-<p align=right>Admin Control</p>
 <br>
-<h1>This is the Admin Homepage</h1>
+<h1>This is the User Homepage</h1>
 <h3>Welcome</h3>
 </body>
 </html>
